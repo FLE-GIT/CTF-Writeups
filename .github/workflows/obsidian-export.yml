@@ -1,0 +1,15 @@
+name: Export Obsidian to Markdown
+on: [push]
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo curl -L https://github.com/zoni/obsidian-export/releases/latest/download/obsidian-export \
+            -o /usr/local/bin/obsidian-export
+          sudo chmod +x /usr/local/bin/obsidian-export
+      - run: mkdir -p public && obsidian-export . public
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
