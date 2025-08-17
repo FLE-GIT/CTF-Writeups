@@ -37,7 +37,7 @@ So the next thing we try is to Binwalk and check for embedded files:
 
 We find gunzip compressed data, and to extract this we can use Binwalk to get the embedded files in a new folder:
 
-![[image-7.png]]
+![](Images/image-7.png)
 
 Inside this folder we find the `flag.txt` folder with the flag: 
 
