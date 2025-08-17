@@ -1,3 +1,4 @@
+# diskchal
 **Category:** Forensics  
 **Points:** Dynamic  
 **CTF:** ScriptCTF 2025  

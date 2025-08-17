@@ -1,3 +1,4 @@
+# Enchant
 **Category:** Misc  
 **Points:** Dynamic  
 **CTF:** ScriptCTF 2025  
