@@ -22,18 +22,40 @@
 
 ## 🧠 Solution Strategy
 
-We're given two files inside the zip folder. A `capture.pcap` file and a `server.py` file. By inspecting the `server.py` file, we see how a server takes input and encrypts it by XORing it 
+We're given two files inside the zip folder. A `capture.pcap` file and a `server.py` file. By inspecting the `server.py` file, we see how it's a server which tages the input and XOR's the secret already XORed by the user with a randomly generated key:
 
-Let's now inspect the `capture.pcap` file and see if we can find any interesting in Wireshark. By following the TCP streaam in wireshark we get the following conversation: 
+![[image-2.png]]
+
+Let's now inspect the `capture.pcap` file and see if we can find any interesting in Wireshark. By following the TCP stream in wireshark we get the following conversation: 
 
 ![[image.png]]
 
-So it seems the user has given XORed their secret twice with the key 
-:
+Looking at this, we can model how the conversation went in terms of the secret. Let's call the secret `m`, the user key `u` and the randomly generated server key `k`, we get the following model from the conversation: 
+
+1. Client $\rightarrow$ Server: $A = m \ \oplus \ u$                                       151e71ce4$\dots$ff05a2b2b0a83ba03
+2. Server $\rightarrow$ Client: $B=A\ \oplus \ k =m \ \oplus \ u \ \oplus \ k$               e1930164280e4$\dots$f15d8a10d70
+3. Client $\rightarrow$ Server: $C=B \ \oplus \ u=m \ \oplus \ k$                       87ee02c312a7f1$\dots$b0871ff303960e
+
+So if we then XOR all these together (no matter the order since it's commutative) we get the original message `m`:
+
+$$
+A \ \oplus \ B \ \oplus \ C = (m \ \oplus \ u) \ \oplus \  (m \ \oplus \ u \ \oplus \ k) \ \oplus \ (m \ \oplus \ k) = m
+$$
+
+This is due to the fact that the following is true for XOR:
 
 
+$$
+x \ \oplus \ x = 0
+$$
+
+So by simply XORing the messages we can get our original secret message. This can be done like the following in CyberChef:
+
+![[image-1.png]]
+
+This gives us our final flag: 
 
 ```bash
-scriptCTF{1_l0v3_m461c_7r1ck5}
+scriptCTF{x0r_1s_not_s3cur3!!!!}
 ```
 
