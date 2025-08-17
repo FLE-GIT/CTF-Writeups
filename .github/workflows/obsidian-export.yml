@@ -1,12 +1,35 @@
 name: Export Obsidian to Markdown
 on: [push]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   export:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: sudo curl -L https://github.com/zoni/obsidian-export/releases/latest/download/obsidian-export \
-              -o /usr/local/bin/obsidian-export && sudo chmod +x /usr/local/bin/obsidian-export
+      - run: |
+          sudo curl -L https://github.com/zoni/obsidian-export/releases/latest/download/obsidian-export \
+            -o /usr/local/bin/obsidian-export
+          sudo chmod +x /usr/local/bin/obsidian-export
       - run: mkdir -p public && obsidian-export . public
       - uses: actions/upload-pages-artifact@v3
-        with: { path: public }
+        with:
+          path: public
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: export
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
