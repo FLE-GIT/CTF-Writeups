@@ -28,7 +28,7 @@ We're given two files inside the zip folder. A `capture.pcap` file and a `server
 
 Let's now inspect the `capture.pcap` file and see if we can find any interesting in Wireshark. By following the TCP stream in wireshark we get the following conversation: 
 
-![[SecureServer - image.png]]
+![[SecureServer1.png]]
 
 Looking at this, we can model how the conversation went in terms of the secret. Let's call the secret `m`, the user key `u` and the randomly generated server key `k`, we get the following model from the conversation: 
 

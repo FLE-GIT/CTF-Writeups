@@ -24,11 +24,13 @@
 
 We're given two files inside the zip folder. A `capture.pcap` file and a `server.py` file. By inspecting the `server.py` file, we see how it's a server which tages the input and XOR's the secret already XORed by the user with a randomly generated key:
 
-![](../../../Images/SecureServer - image-2.png)
+![[SecureServer - image-2.png]]
+
+![[SecureServer - image-2.png]]
 
 Let's now inspect the `capture.pcap` file and see if we can find any interesting in Wireshark. By following the TCP stream in wireshark we get the following conversation: 
 
-![](../../../Images/SecureServer - image.png)
+![[SecureServer1.png]]
 
 Looking at this, we can model how the conversation went in terms of the secret. Let's call the secret `m`, the user key `u` and the randomly generated server key `k`, we get the following model from the conversation: 
 
@@ -51,10 +53,18 @@ $$
 
 So by simply XORing the messages we can get our original secret message. This can be done like the following in CyberChef:
 
-![](../../../Images/SecureServer - image-1.png)
+![[SecureServer - image-1.png]]
 
 This gives us our final flag: 
 
 ```bash
 scriptCTF{x0r_1s_not_s3cur3!!!!}
 ```
+
+![](<../../../Images/SecureServer - image.png>)
+
+![](../../../Images/SecureServer1.png)
+
+![](../../../Images/SecureServer1.png)
+
+![](../../../Images/image-4.png)

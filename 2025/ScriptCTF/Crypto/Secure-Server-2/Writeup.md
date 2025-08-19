@@ -23,12 +23,11 @@
 
 ## 🧠 Solution Strategy
 We get `capture.pcap`, `server.py` and `johndoe.py` from unzipping the folder. I start by checking the `capture.pcap` file in Wireshark and follow the TCP stream like in the previous ``Secure-Server`` challenge: 
-
-![](../../../Images/SecureServer2 - image.png)
+![[SecureServer2 - image.png]]
 
 Looks like a conversation between a user and the `server.py` and we can confirm this by looking at the `server.py` script: 
 
-![](../../../Images/SecureServer2 - image-1.png)
+![[SecureServer2 - image-1.png]]
 
 So from the `capture.pcap` and `server.py` it looks similar to the previous challenge in that the user this time encrypts the secret twice and then gives it as input. Then the server double encrypts it again with their key. In the last message the user decrypts the quadruple encrypted secret with the user's keys. Also the `server.py` file states that the flag is the following: 
 
@@ -37,7 +36,7 @@ So from the `capture.pcap` and `server.py` it looks similar to the previous chal
 
 Therefore, we need to find the keys and secret message to get the flag. Now let's look at `johndoe.py`:
 
-![](../../../Images/SecureServer2 - image-2.png)
+![[SecureServer2-image-2.png]]
 
 The code picks 2-byte keys `(k1, k2)` and a message. It then turns the 2-byte keys into 16-byte ASCII bitstrings and encrypts the message twice using these bitstrings. Then later when the server sends a message back it decrypts it twice and sends it to the server. So overall just to get a overview of everything this is what is happening from the start:
 
@@ -56,4 +55,3 @@ We can repeat the same trick for `(k3,k4)` using the relation between `User` and
 ```bash
 scriptCTF{s3cr37_m3ss4g3_1337!_7e4b3f8d}
 ```
-
