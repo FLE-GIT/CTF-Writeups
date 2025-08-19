@@ -58,3 +58,5 @@ This gives us our final flag:
 ```bash
 scriptCTF{x0r_1s_not_s3cur3!!!!}
 ```
+
+![](../../../Images/image-1.png)
