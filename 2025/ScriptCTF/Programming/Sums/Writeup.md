@@ -27,18 +27,9 @@ We're given a `server.py` and an instance to connect to a Netcat connection. The
 3. Our task is then to find the sum of all the `nums[i]` printed, where `nums[i]` is between the corresponding `l` and `r`.
 4. Important to note that there is 10 second timeout, so we have to do our solution in linear time, and if we must get the correct answer (duh)
 
-Then by explaining this to ChatGPT we get the following code that dirrectly hooks up to Netcat connection and prints out whatever the flag sends. The code works by 
-
-
-`enc.txt` that seems to be encrypted with enchantment table language (or also known as Standard Galactic Alphabet):
-
-```
-ᒲ╎リᒷᓵ∷ᔑ⎓ℸ ̣ ╎ᓭ⎓⚍リ
-```
-
-We then wrap this in 'scriptCTF{}' and our flag is:
+After knowing how it works we can implement the script in `Solution code` that directly hooks up to the service. The code works by reading the first line with `n` integers. From this it builds it builds a prefix sum array. Using this it can for every query of `[l,r]` immediately respond. By running the script it gives the following code:  
 
 ```bash
-scriptCTF{MINECRAFTISFUN}
+scriptCTF{1_w4n7_m0r3_5um5_e2f1221d897d}
 ```
 

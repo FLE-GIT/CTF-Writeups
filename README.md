@@ -1,2 +1,2 @@
 # CTF-Writeups
-This repository contains writeups for the CTFs I have participated in. Each CTF has its own subfolder, which includes the related challenge files, screenshots, exploit scripts, and my detailed solution writeup.
+This repository contains writeups for the CTFs I have participated in. Each CTF has its own subfolder, which includes the related challenge files, screenshots, exploit scripts, and my detailed solution writeup. 🤓☝️
