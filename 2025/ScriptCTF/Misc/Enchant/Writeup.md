@@ -26,11 +26,11 @@ We're given a file `enc.txt` that seems to be encrypted with enchantment table l
 ᒲ╎リᒷᓵ∷ᔑ⎓ℸ ̣ ╎ᓭ⎓⚍リ
 ```
 
-![](Enchant%20-%20image.png)
+![](../../../Images/Enchant-image.png)
 
 By doing some quick google searches, we can find dCode's enchantment table decoder and we can paste the input in giving us 'MINECRAFTISFUN'. 
 
-![](Enchant%20-%20image-1.png)
+![](../../../Images/Enchant-image-1.png)
 
 We then wrap this in 'scriptCTF{}' and our flag is:
 
